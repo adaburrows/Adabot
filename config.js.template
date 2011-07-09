@@ -1,0 +1,15 @@
+var config = {};
+
+// Settings for the IRC client
+config.irc_host = 'zelazny.freenode.net';
+config.irc_nick = 'your_nick';
+config.irc_username = 'local_username';
+config.irc_realname = 'Your Full Name';
+config.irc_channels = ['#pdxWebDev'];
+
+// Port to publish via zeromq
+config.irc_client_pub = '5555';
+// Port to listen for messages to send via zeromq
+config.irc_client_sub = '5556';
+
+module.exports = config;

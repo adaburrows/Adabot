@@ -1,0 +1,25 @@
+ADABOT
+======
+
+A distributed IRC bot/client. Uses the folowing modules:
+ * irc -- npm install irc
+ * zeromq -- npm install zeromq
+ * cradle -- npm install cradle
+
+Currently, it connects to IRC with irc_client.js, which starts sending messages
+to all 0mq subscribers.
+
+It logs all messages to CouchDB with the irc_db.js process.
+
+Eventually it will feature a web IRC client based on:
+ * socket.io
+ * express
+
+How to use
+==========
+
+Set up all the requirements.
+
+Copy config.js.template to config.js and change the settings.
+
+Use Forever to daemonize each script.
