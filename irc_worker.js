@@ -29,7 +29,7 @@ subscriber.on('message', function (data) {
     publisher.send(JSON.stringify({
       "to": message.from,
       "from": config.irc_nick,
-      "message": "Hi "+message.from+" !"
+      "message": "Hi "+message.from+"!"
     }));
   }
 
