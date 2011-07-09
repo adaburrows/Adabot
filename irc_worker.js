@@ -36,5 +36,5 @@ subscriber.connect("tcp://127.0.0.1:"+config.irc_client_pub);
 publisher.send(JSON.stringify({
   "to": "PsyWren",
   "from": config.irc_nick,
-  "message": "Hi Jill!
+  "message": "Hi Jill!"
 }));
