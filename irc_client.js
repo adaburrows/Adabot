@@ -32,7 +32,8 @@ adabot.addListener('message', function (from, to, message) {
     var data = {
       "from":from,
       "to":to,
-      "message":message
+      "message":message,
+      "created":new Date()
     };
     var publish = JSON.stringify(data);
     publisher.send(publish);

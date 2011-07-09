@@ -21,9 +21,8 @@ var db = new(cradle.Connection)().database('irc_messages');
 
 // When we recieve a message from the 0mq
 subscriber.on('message', function (data) {
-  var json = data.toString()
-  var message = JSON.parse(json)
-  message.created = new Date();
+  var json = data.toString();
+  var message = JSON.parse(json);
   db.save(message, function(err, res){
     console.log(err+': '+res);
   });
