@@ -10,6 +10,7 @@ What it Does
 ------------
 
 Adabot has several parts:
+
  * irc_client.js
  * irc_worker.js _(library to help writing workers)_
  * db_worker.js
@@ -24,6 +25,7 @@ The PM client listens for PMs and replies to them with a greeting.
 I've made it easy to start writing code that interacts with IRC by writing a worker. Require irc_worker.js, create a new irc_worker object, and override the objects process method. Just examine db_worker.js and pm_worker.js to get started.
 
 Eventually it will feature a web IRC client based on:
+
  * socket.io
  * express
 
