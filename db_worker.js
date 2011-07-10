@@ -18,4 +18,4 @@ var db_worker = new irc_worker();
 // When we recieve a message from the 0mq
 db_worker.process = function (message_data) {
   db.save(message_data, function(err, res){});
-});
+};
