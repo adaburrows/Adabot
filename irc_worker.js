@@ -5,35 +5,38 @@
  * =============================================================================
  */
 
-// Load config
-var config = require('./config.js');
+function irc_worker () {
+  var config, context, subscriber, publisher;
 
-// Load required modules
-var context = require('zeromq');
+  // Load config
+  this.config = require('./config.js');
 
-// Create a subscriber socket for the 0mq
-var subscriber = context.createSocket('sub');
-subscriber.subscribe("");
+  // Create 0mq context
+  this.context = require('zeromq');
+  // Create a subscriber socket for the 0mq
+  this.subscriber = this.context.createSocket('sub');
+  this.subscriber.subscribe("");
+  // Create the 0mq publisher socket
+  this.publisher = this.context.createSocket('push');
+  this.publisher.connect("tcp://127.0.0.1:"+this.config.irc_client_sub);
 
-// Create the 0mq publisher socket
-var publisher = context.createSocket('push');
-publisher.connect("tcp://127.0.0.1:"+config.irc_client_sub);
+  // Set up listening closure
+  var self = this;
+  this.subscriber.on('message', function (data) {
+    // Convert to usable form
+    var message_json = data.toString();
+    var message_data = JSON.parse(message_json);
+    // Send it to the processing function.
+    self.process(message_data);
+  });
 
-// When we recieve a message from the 0mq
-subscriber.on('message', function (data) {
-  var json = data.toString();
-  var message = JSON.parse(json);
+  // Connect the subscriber socket to the publisher
+  this.subscriber.connect("tcp://127.0.0.1:"+this.config.irc_client_pub);
+}
 
+// Processing function: Override this method to implement your worker
+irc_worker.prototype.process = function (message_data) {
   // Do processing, maybe reply using the publisher queue
-  if(message.to == config.irc_nick) {
-    publisher.send(JSON.stringify({
-      "to": message.from,
-      "from": config.irc_nick,
-      "message": "Hi "+message.from+"!"
-    }));
-  }
+};
 
-});
-
-// Connect the subscriber socket to the publisher
-subscriber.connect("tcp://127.0.0.1:"+config.irc_client_pub);
+module.exports = irc_worker;
