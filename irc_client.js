@@ -1,7 +1,7 @@
 /*
  * IRC Client
  * ----------
- * Receives messages from IRC and publishes them via 0mq
+ * Receives messages from IRC and publishes them via ØMQ
  * =============================================================================
  */
 
@@ -12,11 +12,11 @@ var config = require('./config.js');
 var context = require('zeromq');
 var irc = require('irc');
 
-// Create the 0mq publisher socket
+// Create the ØMQ publisher socket
 var publisher = context.createSocket('pub');
 publisher.bindSync("tcp://127.0.0.1:"+config.irc_client_pub);
 
-// Create the 0mq socket for all send requests
+// Create the ØMQ socket for all send requests
 var receiver = context.createSocket('pull');
 receiver.bindSync("tcp://127.0.0.1:"+config.irc_client_sub);
 
@@ -27,7 +27,7 @@ var adabot = new irc.Client(config.irc_host, config.irc_nick, {
     realName: config.irc_realname
 });
 
-// Listen for messages and publish them to the 0mq
+// Listen for messages and publish them to the ØMQ
 adabot.addListener('message', function (from, to, message) {
     var data = {
       "from":from,
@@ -39,7 +39,7 @@ adabot.addListener('message', function (from, to, message) {
     publisher.send(publish);
 });
 
-// Listen for messages to send from the 0mq
+// Listen for messages to send from the ØMQ
 receiver.on('message', function(data) {
   var json = data.toString();
   var message = JSON.parse(json);

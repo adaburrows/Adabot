@@ -1,7 +1,7 @@
 /*
  * IRC Worker
  * ----------
- * Receives messages from via 0mq, processes them and maybe sends a response
+ * Receives messages from via ØMQ, processes them and maybe sends a response
  * =============================================================================
  */
 
@@ -11,12 +11,12 @@ function irc_worker () {
   // Load config
   this.config = require('./config.js');
 
-  // Create 0mq context
+  // Create ØMQ context
   this.context = require('zeromq');
-  // Create a subscriber socket for the 0mq
+  // Create a subscriber socket for the ØMQ
   this.subscriber = this.context.createSocket('sub');
   this.subscriber.subscribe("");
-  // Create the 0mq publisher socket
+  // Create the ØMQ publisher socket
   this.publisher = this.context.createSocket('push');
   this.publisher.connect("tcp://127.0.0.1:"+this.config.irc_client_sub);
 

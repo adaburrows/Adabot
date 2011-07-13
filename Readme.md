@@ -6,7 +6,7 @@ Adabot is a distributed IRC bot/client.
 What it Does
 ------------
 
-The main IRC client starts passing messages to and from IRC via 0mq. There are a few things missing, like being able to join channels, quit channels, change mode, change nick, etc. -- all of which are provided by the IRC library. Please fork it and start sending me pull requests. Or, just send me feature requests.
+The main IRC client starts passing messages to and from IRC via ØMQ. There are a few things missing, like being able to join channels, quit channels, change mode, change nick, etc. -- all of which are provided by the IRC library. Please fork it and start sending me pull requests. Or, just send me feature requests.
 
 The DB client just simply listens to all messages and writes them to the DB.
 

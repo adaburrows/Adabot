@@ -1,7 +1,7 @@
 /*
  * DB Worker
  * ---------
- * Receives messages from IRC via 0mq.
+ * Receives messages from IRC via ØMQ.
  * Saves them to CouchDB.
  * =============================================================================
  */
@@ -15,7 +15,7 @@ var db = new(cradle.Connection)().database('irc_messages');
 // Create a new irc_worker called db_worker
 var db_worker = new irc_worker();
 
-// When we recieve a message from the 0mq
+// When we recieve a message from the ØMQ
 db_worker.process = function (message_data) {
   db.save(message_data, function(err, res){});
 };

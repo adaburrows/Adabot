@@ -1,7 +1,7 @@
 /*
  * PM Worker
  * ---------
- * Receives messages from IRC via 0mq.
+ * Receives messages from IRC via ØMQ.
  * Sends a greeting back to any PMs.
  * =============================================================================
  */
