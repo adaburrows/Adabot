@@ -11,6 +11,10 @@ var irc_worker = require('./irc_worker.js');
 // Create a new irc_worker called pm_worker
 var say_worker = new irc_worker();
 
+say_worker.process = function(message) {
+  console.log(message.from+": "+message.message);
+};
+
 say_worker.say = function(message){
   this.publisher.send(JSON.stringify({
     "to": "#pdxwebdev",
